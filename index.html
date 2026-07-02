@@ -148,6 +148,11 @@
     animation:pop .35s;}
   .modal h2{font-family:'Baloo 2',cursive; font-size:30px; margin:8px 0 4px;}
   .modal .bigball{margin:8px auto 6px; display:flex; justify-content:center;}
+  .planet-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:12px 0 6px;}
+  .stat{background:rgba(255,255,255,.06); border:1px solid var(--stroke); border-radius:14px; padding:11px 6px; text-align:center;}
+  .stat-ico{color:var(--accent2); margin-bottom:5px;} .stat-ico svg{width:22px; height:22px;}
+  .stat-val{font-family:'Baloo 2',cursive; font-size:15px; line-height:1.15;}
+  .stat-lbl{font-size:11px; opacity:.72; margin-top:3px; letter-spacing:.3px;}
   .fact{background:rgba(255,255,255,.06); border-left:4px solid var(--accent2); text-align:left;
     padding:11px 15px; border-radius:10px; margin:9px 0; font-size:16px; line-height:1.45; font-weight:500;}
   .modal .close{position:absolute; top:14px; right:16px; background:rgba(255,255,255,.08); border:none; color:var(--text);
@@ -548,6 +553,7 @@
     <button class="close" id="modalClose">×</button>
     <div class="bigball" id="modalBall"></div>
     <h2 id="modalName"></h2>
+    <div class="planet-stats" id="modalStats"></div>
     <div id="modalFacts"></div>
     <div class="actions">
       <button class="btn" id="modalRead">🔊 Read to Me</button>
@@ -581,6 +587,17 @@ const PLANETS = [
 const SUN = {name:"Sun", size:84, color:"radial-gradient(circle at 42% 36%,#fff6c0,#ffcc33 45%,#ff8a00 90%)",
   facts:["I am a star, not a planet!","I am so big that a million Earths could fit inside me.","All the planets travel around me."]};
 const MOON = {name:"Moon", size:30, color:"radial-gradient(circle at 60% 62%, #6b6f78 0 5%, rgba(0,0,0,0) 8%), radial-gradient(circle at 38% 50%, #7c828c 0 4%, rgba(0,0,0,0) 7%), radial-gradient(circle at 36% 30%, #eef0f2, #b8bcc4 60%, #7e828b)"};
+const DATA = {
+  Sun:     {dia:"1,391,000 km", dist:"Center of it all", moons:"—"},
+  Mercury: {dia:"4,879 km",   dist:"58 million km",   moons:"0"},
+  Venus:   {dia:"12,104 km",  dist:"108 million km",  moons:"0"},
+  Earth:   {dia:"12,742 km",  dist:"150 million km",  moons:"1"},
+  Mars:    {dia:"6,779 km",   dist:"228 million km",  moons:"2"},
+  Jupiter: {dia:"139,820 km", dist:"778 million km",  moons:"95"},
+  Saturn:  {dia:"116,460 km", dist:"1.4 billion km",  moons:"274"},
+  Uranus:  {dia:"50,724 km",  dist:"2.9 billion km",  moons:"28"},
+  Neptune: {dia:"49,244 km",  dist:"4.5 billion km",  moons:"16"}
+};
 
 /* ================= STATE ================= */
 let score=0, soundOn=true, musicOn=false;
@@ -687,10 +704,21 @@ function openModal(obj){
   const bb=document.getElementById('modalBall'); bb.innerHTML='';
   bb.appendChild(makeBall(obj, Math.min(obj.size*1.5,120)));
   document.getElementById('modalName').textContent=(obj.name==='Sun'?'☀️ Sun':obj.name);
+  const d=DATA[obj.name], stats=document.getElementById('modalStats'); stats.innerHTML='';
+  if(d){
+    const ICO={
+      dia:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="2"/><path d="M7 8v3M11 8v4M15 8v3"/></svg>',
+      dist:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="12" r="2.5"/><path d="M8 12h11"/><path d="M15 8l4 4-4 4"/></svg>',
+      moons:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 3a9 9 0 1 0 5 16 A7 7 0 0 1 16 3z"/></svg>'
+    };
+    const card=(ico,val,lbl)=>'<div class="stat"><div class="stat-ico">'+ico+'</div><div class="stat-val">'+val+'</div><div class="stat-lbl">'+lbl+'</div></div>';
+    stats.innerHTML=card(ICO.dia,d.dia,'Width')+card(ICO.dist,d.dist,'From Sun')+card(ICO.moons,d.moons,'Moons');
+  }
   const fb=document.getElementById('modalFacts'); fb.innerHTML='';
-  obj.facts.forEach(f=>{const d=document.createElement('div'); d.className='fact'; d.textContent=f; fb.appendChild(d);});
+  obj.facts.forEach(f=>{const el=document.createElement('div'); el.className='fact'; el.textContent=f; fb.appendChild(el);});
   document.getElementById('modalBg').classList.add('show');
-  const readText=obj.name+'. '+obj.facts.join(' ');
+  const dsay=d?(' It is about '+d.dia+' wide, '+(d.dist==='Center of it all'?'right at the center':d.dist+' from the Sun')+', with '+(d.moons==='—'?'no':d.moons)+' moons.'):'';
+  const readText=obj.name+'. '+obj.facts.join(' ')+dsay;
   const rb=document.getElementById('modalRead');
   rb.onclick=()=>{ SFX.click(); speak(readText,rb); };
 }
