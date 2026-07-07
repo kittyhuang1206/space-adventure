@@ -460,7 +460,7 @@
       </div><h3>Explore Planets</h3><p>Tap each planet to discover fun facts about it.</p></div>
       <div class="menu-card" data-go="story"><div class="mc-ico">
         <svg viewBox="0 0 64 64"><path d="M32 17C24 12 13 12 8 15v34c5-3 16-3 24 2 8-5 19-5 24-2V15c-5-3-16-3-24 2Z" fill="#bcd6ff" stroke="#5ad2ff" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 17v34" stroke="#5ad2ff" stroke-width="2.5"/><path d="M13 24h13M13 31h13M38 24h13M38 31h13" stroke="#5ad2ff" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
-      </div><h3>Space Voyage</h3><p>Pilot a starship on a grand tour of the whole solar system.</p></div>
+      </div><h3>Space Voyage</h3><p>Fly your rocket around every planet on a fun space trip!</p></div>
       <div class="menu-card" data-go="order"><div class="mc-ico">
         <svg viewBox="0 0 64 64"><rect x="8" y="14" width="16" height="16" rx="4" fill="#b98bff"/><rect x="8" y="34" width="16" height="16" rx="4" fill="#5ad2ff"/><text x="16" y="26" text-anchor="middle" font-size="11" font-weight="800" fill="#0a0f2c" font-family="sans-serif">1</text><text x="16" y="46" text-anchor="middle" font-size="11" font-weight="800" fill="#0a0f2c" font-family="sans-serif">2</text><path d="M32 20h24M32 30h18M32 40h24M32 50h16" stroke="#cfe0ff" stroke-width="3.5" stroke-linecap="round"/></svg>
       </div><h3>Put in Order</h3><p>Drag the planets into the right spots from the Sun.</p></div>
@@ -697,7 +697,7 @@
     <div class="game-card" style="position:relative;">
       <button class="close story-close" id="storyClose" title="Close story">×</button>
       <div class="game-title">📖 Space Voyage</div>
-      <div class="game-sub">Pilot a starship on a grand tour of the solar system. Tap Next to read the mission log.</div>
+      <div class="game-sub">Blast off in your rocket and zoom around every planet! Tap Next to read along.</div>
       <div class="story-illus" id="storyIllus"></div>
       <div class="story-title" id="storyTitle"></div>
       <div class="story-page" id="storyText"></div>
@@ -1084,18 +1084,18 @@ function selectClue(li){
 /* ================= SPACE STORY ================= */
 const P=n=>PLANETS.find(x=>x.name===n);
 const STORY=[
- {who:P("Earth"), title:"Mission: Grand Tour", text:"You strap into the cockpit of your starship. The mission: a full tour of the solar system. Engines roar, the countdown hits zero, and Earth shrinks behind you as you punch into the dark."},
- {who:SUN, title:"The Sun", text:"First, the star that rules it all. The Sun holds about 99.8% of the solar system's mass, and its gravity keeps every planet locked in orbit. You keep your distance — up close it's a furnace of nuclear fire, millions of degrees hot."},
- {who:P("Mercury"), title:"Mercury", text:"You dive sunward to Mercury: a scorched, cratered world with almost no atmosphere. Days broil, nights freeze. It's the speed champion, whipping around the Sun in just 88 days."},
- {who:P("Venus"), title:"Venus", text:"Next, Venus — Earth's so-called evil twin. Beneath its thick clouds hides a crushing, toxic atmosphere hot enough to melt lead. You stay in orbit; nothing lasts long down there."},
- {who:P("Earth"), title:"Earth", text:"You drift past your home planet — the pale blue dot, the only world we know that's full of life. Oceans, forests, cities, all on one fragile sphere. You salute it and press on."},
- {who:P("Mars"), title:"Mars", text:"The rust-red deserts of Mars roll beneath you. Robotic rovers still crawl the surface, hunting for signs of ancient water. One day humans may walk here — maybe someone from your own generation."},
- {who:P("Jupiter"), title:"Jupiter", text:"Then the giant: Jupiter, so massive that around 1,300 Earths could fit inside it. Its Great Red Spot is a storm that has raged for centuries — wider than our entire planet."},
- {who:P("Saturn"), title:"Saturn", text:"You coast past Saturn's rings, billions of shards of ice and rock blazing in the sunlight. The planet is so low in density that, in theory, it could float in water."},
- {who:P("Uranus"), title:"Uranus", text:"Far out in the cold, Uranus tips completely on its side — probably knocked over by an ancient collision. A single orbit takes 84 Earth years, so its seasons last for decades."},
- {who:P("Neptune"), title:"Neptune", text:"At the frontier waits Neptune, a deep-blue ice giant with supersonic winds topping 2,000 km/h. It was discovered using math before anyone ever saw it through a telescope."},
- {who:P("Earth"), title:"The Long Way Home", text:"Fuel running low, you swing the ship around and ride the long arc home. Earth grows from a dot back into a world — and you realize just how far you've traveled, and how much is still out there."},
- {who:SUN, title:"End of Log", text:"Touchdown. Mission complete: eight planets, one star, and countless wonders. But space is endless, and the next voyage is always waiting. End of log."}
+ {who:P("Earth"), title:"3… 2… 1… Liftoff!", text:"Buckle up, space captain! Your rocket rumbles, the engines blast fire, and WHOOSH — your rocket zooms off Earth and up into space! Ready for the greatest space trip ever? Let's go!"},
+ {who:SUN, title:"Hello, Sun!", text:"First stop: the Sun — a giant ball of glowing fire! It's so huge that a MILLION Earths could fit inside it. Your rocket keeps a safe distance, because it's hotter than the hottest oven. You wave hello and zoom on!"},
+ {who:P("Mercury"), title:"Speedy Mercury", text:"Your rocket zips to tiny Mercury, the planet closest to the Sun. It races around faster than anyone — zoom, zoom, zoom! It's covered in bumpy craters, like a giant space cookie."},
+ {who:P("Venus"), title:"Cloudy Venus", text:"Your rocket sails past Venus, wrapped in thick swirly clouds like a big fluffy blanket. But watch out — underneath it's hot enough to melt a crayon! Too toasty to land. Zoom by!"},
+ {who:P("Earth"), title:"Our Home, Earth", text:"Look — there's home! Earth is the beautiful blue-and-green marble where YOU live. It has oceans to splash in, trees to climb, and it's the only planet we know with animals and people. You blow it a big kiss!"},
+ {who:P("Mars"), title:"Red Planet Mars", text:"Your rocket touches down on Mars — red and dusty, like a giant sandbox in space! Real robot rovers drive around exploring. You bounce across the ground in your spacesuit — boing, boing, boing!"},
+ {who:P("Jupiter"), title:"Gigantic Jupiter!", text:"WOAH! Next to giant Jupiter, your rocket feels teeny-tiny. It's the biggest planet of all! See that giant red swirl? It's a storm bigger than our whole Earth. Hold on tight, captain!"},
+ {who:P("Saturn"), title:"Sparkly Saturn", text:"You loop your rocket around Saturn's fancy rings — Wheee! They're made of zillions of sparkly bits of ice and rock. Fun fact: Saturn is so light it could float in a giant bathtub!"},
+ {who:P("Uranus"), title:"Sideways Uranus", text:"Your rocket glides past Uranus, a chilly blue-green ball that spins on its SIDE — like it's doing a slow somersault! Brrr, it's super freezing way out here."},
+ {who:P("Neptune"), title:"Windy Neptune", text:"Far, far away spins deep-blue Neptune, the windiest planet of all. Its winds zoom faster than a race car — whoooosh! Your rocket sails through the sparkly dark. What an amazing adventure!"},
+ {who:P("Earth"), title:"The Trip Home", text:"Time to point your rocket home, captain! You spin around and zoom back toward the little blue dot. Earth gets bigger… and bigger… and BIGGER. Almost there — get ready to land!"},
+ {who:P("Earth"), title:"You Did It! 🎉", text:"Touchdown! Your rocket visited every planet AND the Sun, and you had the BEST space adventure ever. Where should you blast off to next time, captain? 🚀"}
 ];
 let storyPos=0, storyDone=false;
 function buildStory(){ storyPos=0; storyDone=false; showStory(); }
